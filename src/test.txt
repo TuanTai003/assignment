@@ -1,0 +1,112 @@
+import { useEffect, useState } from "react";
+import * as ProductService from '../service/ProductService';
+import { Link } from "react-router-dom";
+import {AiFillEdit, AiFillDelete} from 'react-icons/ai'
+import { Table } from "antd";
+import CustomModal from "../component/CustomModal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const columns = [
+    {
+      title: "STT",
+      dataIndex: "key",
+    },
+    {
+      title: "Tên sản phẩm",
+      dataIndex: "name",
+      sorter: (a, b) => a.title.length - b.title.length,
+    },
+    {
+      title: "Số lượng sản phẩm",
+      dataIndex: "Quality",
+    },
+    {
+      title: "Giá",
+      dataIndex: "Price",
+      sorter: (a, b) => a.Price - b.Price,
+    },
+    {
+      title: "Hành động",
+      dataIndex: "action",
+    },
+  ];
+const ListProduct = ()=>{
+    const [open, setOpen] = useState(false);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() =>{
+        const getAll = async () =>{
+            const result = await ProductService.getAllProduct();
+            setProducts(result);
+        }
+        getAll();
+    },[])
+    const showModal = async(id) => {
+        await ProductService.deleteProduct(id);
+        toast.success("Xóa sản phẩm thành công");
+        const items = await ProductService.getAllProduct();
+        setProducts(items);
+      };
+    
+      const hideModal = () => {
+       
+      };
+      
+    
+    const DeleteProduct = async(id)=>{
+        const productId = await ProductService.deleteProduct(id);
+        setProducts(productId);
+    }
+    
+    
+    
+    return(
+        <>
+        {/* <h3>Danh sách sản phẩm</h3>
+        <div>
+        <table style={{width: '100%'}} border={1} className="text-center fs-3">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá sản phẩm</th>
+                        <th>Số lượng sản phẩm</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {products.map(item =>(
+                        <tr key={item.id}>
+                            <th>{item.id}</th>
+                            <th>{item.name}</th>
+                            <th>{item.Price}</th>
+                            <th>{item.Quanlity}</th>
+                            <th>
+                                <Link to={`/admin/products/${item.id}`}><AiFillEdit/></Link>
+                                <button className="ms-3 fs-3 text-danger bg-transparent border-0"
+                                    onClick={()=> showModal(item.id)}
+                                ><AiFillDelete/></button>
+                            </th>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div> */}
+        
+            {/* <div>
+      <div className="row align-item-center">
+        <div className="col-6">
+          <h3 className="mb-4 title">Danh sách sản phẩm</h3>
+        </div>
+        
+      </div>
+      <div>
+        <Table columns={columns} dataSource={data1} />
+      </div>
+      
+      
+    </div> */}
+        </>
+    );
+}
+export default ListProduct;

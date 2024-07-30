@@ -1,0 +1,37 @@
+[
+  {
+    "name": "iPhone 15",
+    "ram": "128G",
+    "price": "23.000.000 đ",
+    "org_price": "23.000.000 đ",
+    "photoName": "product/iphone15.jpg"
+  },
+  {
+    "name": "iPhone 15",
+    "ram": "64G",
+    "price": "22.000.000 đ",
+    "org_price": "23.000.000 đ",
+    "photoName": "product/iphone15.jpg"
+  },
+  {
+    "name": "iPhone 15",
+    "ram": "256G",
+    "price": "26.000.000 đ",
+    "org_price": "28.000.000 đ",
+    "photoName": "product/iphone15.jpg"
+  },
+  {
+    "name": "iPhone 14",
+    "ram": "128G",
+    "price": "20.000.000 đ",
+    "org_price": "22.000.000 đ",
+    "photoName": "product/iphone14.jpg"
+  },
+  {
+    "name": "iPhone 14",
+    "ram": "256G",
+    "price": "24.000.000 đ",
+    "org_price": "26.000.000 đ",
+    "photoName": "product/iphone14.jpg"
+  }
+]
